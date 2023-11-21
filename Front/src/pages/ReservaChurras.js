@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import React from "react";
+import { Button } from 'react-native-paper';
 import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context";
-import { Button } from 'react-native-paper';
 import { DatePickerModal } from 'react-native-paper-dates';
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import React from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 
 const styles = StyleSheet.create({
     viewClass: {
@@ -76,7 +76,11 @@ export function ReservaChurras(props)
     const [open, setOpen] = React.useState(false);
     const { utils, setUtils } = useContext(UtilsContext)
 
-    const [currentDate, setCurrentDate] = useState(getDate());
+    const Dates = [new Date('2023-11-23'), new Date('2023-11-25')]
+
+    Dates.forEach(date => {
+        date.setDate(date.getDate() + 1)
+    });
 
     const onDismissSingle = React.useCallback(() => {
         setOpen(false);
@@ -103,6 +107,7 @@ export function ReservaChurras(props)
                         Escolha uma data
                     </Button>
                     <DatePickerModal
+                        validRange={{ startDate: new Date(), disabledDates: Dates }}
                         locale="pt"
                         mode="single"
                         visible={open}

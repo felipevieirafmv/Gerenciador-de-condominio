@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Switch, Button } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Switch, Button } from "react-native";
 
 const styles = StyleSheet.create({
     viewClass: {
@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
         marginLeft: "7%",
         marginRight: "7%",
         marginBottom: "5%",
-        borderRadius: 5
+        borderRadius: 5,
+        color: "#696969",
+        fontFamily: "Comic Sans MS",
     },
     viewForm: {
         display: "flex",
@@ -28,11 +30,12 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "flex-end",
     },
-    loginButton: {
+    cadastrarButton: {
         backgroundColor: "white",
         height: 50,
         display: "flex",
         justifyContent: "center",
+        marginTop: "5%",
         marginHorizontal: "10%",
         borderRadius: 5
     },
@@ -61,7 +64,9 @@ const styles = StyleSheet.create({
     doubleInput: {
         backgroundColor: "white",
         height: 25,
-        borderRadius: 5
+        borderRadius: 5,
+        color: "#696969",
+        fontFamily: "Comic Sans MS",
     },
     viewSwitch: {
         paddingLeft: "7%",
@@ -90,6 +95,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: "center",
     },
+
 });
 
 export function Cadastro(props)
@@ -100,9 +106,10 @@ export function Cadastro(props)
     const [sexo, setSexo] = useState("")
     const [vagas, setVagas] = useState("")
     const [bloco, setBloco] = useState("")
+    const [apto, setApto] = useState("")
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
-    const [notificacao, setNotificacao] = useState(false)
+    const [adm, setAdm] = useState(false)
     const {utils, setUtils} = useContext(UtilsContext)
 
     function goToUsuario()
@@ -142,96 +149,101 @@ export function Cadastro(props)
             <Text style = {styles.titleText}>Cadastrar Morador</Text>
 
             <View style = {styles.viewForm}>
-                <Text style = {styles.labelText}>Nome:</Text>
                 <TextInput
                     style = {styles.input}
                     value = {nome}
+                    placeholder = "Nome"
                     onChangeText = {text => setNome(text)}
                 />
 
-                <Text style = {styles.labelText}>CPF:</Text>
+                <View style = {styles.viewDoubleInput}>
+                    <View style = {styles.viewOneDoubleInput}>
+                        <TextInput
+                            style = {styles.doubleInput}
+                            value = {dataNasc}
+                            placeholder = "Data de Nascimento"
+                            onChangeText = {text => setDataNasc(text)}
+                        />
+                    </View>
+                    <View  style = {styles.viewOneDoubleInput}>
+                        <TextInput
+                            style = {styles.doubleInput}
+                            value = {sexo}
+                            placeholder = "Sexo"
+                            onChangeText = {text => setSexo(text)}
+                        />
+                    </View>
+                </View>
+
                 <TextInput
                     style = {styles.input}
                     value = {CPF}
+                    placeholder = "CPF"
                     onChangeText = {text => setCPF(text)}
                 />
 
                 <View style = {styles.viewDoubleInput}>
                     <View style = {styles.viewOneDoubleInput}>
-                        <Text style = {{fontFamily: "Comic Sans MS"}}>Data de nascimento:</Text>
-                        <TextInput
-                            style = {styles.doubleInput}
-                            value = {dataNasc}
-                            onChangeText = {text => setDataNasc(text)}
-                        />
-                    </View>
-                    <View  style = {styles.viewOneDoubleInput}>
-                        <Text style = {{fontFamily: "Comic Sans MS"}}>Sexo:</Text>
-                        <TextInput
-                            style = {styles.doubleInput}
-                            value = {sexo}
-                            onChangeText = {text => setSexo(text)}
-                        />
-                    </View>
-                </View>
-
-                <Text style = {styles.labelText}>Quantidade de vagas:</Text>
-                <TextInput
-                    style = {styles.input}
-                    value = {vagas}
-                    onChangeText = {text => setVagas(text)}
-                />
-
-                <View style = {styles.viewDoubleInput}>
-                    <View style = {styles.viewOneDoubleInput}>
-                        <Text style = {{fontFamily: "Comic Sans MS"}}>Bloco:</Text>
                         <TextInput
                             style = {styles.doubleInput}
                             value = {bloco}
+                            placeholder = "Bloco"
                             onChangeText = {text => setBloco(text)}
                         />
                     </View>
                     <View  style = {styles.viewOneDoubleInput}>
-                        <Text style = {{fontFamily: "Comic Sans MS"}}>Apto:</Text>
                         <TextInput
                             style = {styles.doubleInput}
-                            value = {sexo}
-                            onChangeText = {text => setSexo(text)}
+                            value = {apto}
+                            placeholder = "Apto"
+                            onChangeText = {text => setApto(text)}
                         />
                     </View>
                 </View>
 
-                <Text style = {styles.labelText}>E-mail:</Text>
                 <TextInput
                     style = {styles.input}
                     value = {email}
+                    placeholder = "E-mail"
                     onChangeText = {text => setEmail(text)}
                 />
 
-                <Text style = {styles.labelText}>Senha:</Text>
                 <TextInput
                     style = {styles.input}
                     value = {senha}
+                    placeholder = "Senha"
                     onChangeText = {text => setSenha(text)}
                 />
 
-                <Text style = {styles.labelText}>Adm:</Text>
-                <View style = {styles.viewSwitch}>
-                    <Switch
-                        onValueChange = {() => setNotificacao(!notificacao)}
-                        value = {notificacao}
-                        trackColor = {{false: "#757577", true: "#81b0ff"}}
-                        thumbColor = {"#ffffff"}
-                        activeThumbColor = {"#f4f3f4"}
-                        style = {styles.styleSwitch}
-                    />
-                    <Text style = {styles.labelText}>{notificacao ? "Sim" : "Não"}</Text>
+                <View style = {styles.viewDoubleInput}>
+                    <View>
+                        <Text style = {styles.labelText}>Adm:</Text>
+                        <View style = {styles.viewSwitch}>
+                            <Switch
+                                onValueChange = {() => setAdm(!adm)}
+                                value = {adm}
+                                trackColor = {{false: "#757577", true: "#81b0ff"}}
+                                thumbColor = {"#ffffff"}
+                                activeThumbColor = {"#f4f3f4"}
+                                style = {styles.styleSwitch}
+                            />
+                            <Text style = {styles.labelText}>{adm ? "Sim" : "Não"}</Text>
+                        </View>
+                    </View>
+                    <View>
+                        <TextInput
+                            style = {styles.doubleInput}
+                            value = {vagas}
+                            placeholder = "Vagas"
+                            onChangeText = {text => setVagas(text)}
+                        />
+                    </View>
                 </View>
 
             </View>
 
             <View style = {styles.viewButton}>
-                <TouchableOpacity style={styles.loginButton} onPress = {() => postUser(nome, idade)}>
+                <TouchableOpacity style={styles.cadastrarButton} onPress = {() => postUser(nome, idade)}>
                     <Text style = {styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.cadastroButton} onPress = {() => props.navigation.navigate("HomeSindico")}>
