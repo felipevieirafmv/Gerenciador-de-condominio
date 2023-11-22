@@ -37,6 +37,21 @@ public class UserModel {
         this.vaga = vaga;
     }
 
+    public UserModel(UserModel user)
+    {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.dataNasc = user.getDataNasc();
+        this.sex = user.getSex();
+        this.cpf = user.getCpf();
+        this.bloco = user.getBloco();
+        this.apto = user.getApto();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.adm = user.getAdm();
+        this.vaga = user.getVaga();
+    }
+
     public UserModel(String id)
     {
         this.id = id;

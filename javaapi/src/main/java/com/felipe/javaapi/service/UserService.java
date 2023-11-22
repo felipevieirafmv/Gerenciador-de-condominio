@@ -19,7 +19,7 @@ public class UserService {
         return this.userRepository.save(userModel);
     }
 
-    public void save(String name, String dataNasc, String sex, String cpf, String bloco, String apto, String email, String password, Boolean adm, short vaga)
+    public void save(String id, String name, String dataNasc, String sex, String cpf, String bloco, String apto, String email, String password, Boolean adm, short vaga)
     {
         this.userRepository.save(new UserModel(id, name, dataNasc, sex, cpf, bloco, apto, email, password, adm, vaga));
     }

@@ -1,15 +1,15 @@
-package com.felipe.java_api.repository;
+package com.felipe.javaapi.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.felipe.java_api.model.CompanyModel;
+import com.felipe.javaapi.model.ReservaModel;
 
 import java.util.List;
 
-public interface CompanyRepository extends MongoRepository<CompanyModel, String> {
+public interface ReservaRepository extends MongoRepository<ReservaModel, String> {
     // @Query("{'listUser.id': ?0 }")
     @Query("{'idUser.id': ?0 }")
-    List<CompanyModel> findByUserID(String userId);
+    List<ReservaModel> findByUserID(String userId);
 
 }

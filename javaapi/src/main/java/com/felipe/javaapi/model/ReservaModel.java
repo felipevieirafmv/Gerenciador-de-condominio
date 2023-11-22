@@ -1,7 +1,6 @@
 package com.felipe.javaapi.model;
 
-import java.time.Date;
-import java.util.List;
+import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,8 +16,13 @@ public class ReservaModel {
     @DBRef
     private UserModel idUser;
 
-    public ReservaModel(String id, Date diaReservado) {
+    public ReservaModel(String id, Date diaReservado, UserModel idUser) {
         this.id = id;
+        this.diaReservado = diaReservado;
+        this.idUser = idUser;
+    }
+
+    public ReservaModel(Date diaReservado) {
         this.diaReservado = diaReservado;
     }
 
