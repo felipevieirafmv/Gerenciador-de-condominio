@@ -20,10 +20,10 @@ public class UserModel {
     private String apto;
     private String email;
     private String password;
-    private boolean adm;
+    private Boolean adm;
     private short vaga;
 
-    public UserModel(String name, String dataNasc, String sex, String cpf, String bloco, String email, String apto, String password, Boolean adm, short vaga)
+    public UserModel(String name, String dataNasc, String sex, String cpf, String bloco, String apto, String email, String password, Boolean adm, short vaga)
     {
         this.name = name;
         this.dataNasc = dataNasc;
