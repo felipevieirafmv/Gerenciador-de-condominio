@@ -16,7 +16,6 @@ import com.felipe.javaapi.DTO.ReservaUserDTO;
 import com.felipe.javaapi.model.ReservaModel;
 import com.felipe.javaapi.model.UserModel;
 import com.felipe.javaapi.service.ReservaService;
-import com.felipe.javaapi.service.UserService;
 
 @RestController
 @RequestMapping("/reserva")
