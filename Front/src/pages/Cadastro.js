@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Switch, Button } from "react-native";
+import axios from "axios";
 
 const styles = StyleSheet.create({
     viewClass: {
@@ -104,7 +105,7 @@ export function Cadastro(props)
     const [CPF, setCPF] = useState("")
     const [dataNasc, setDataNasc] = useState("")
     const [sexo, setSexo] = useState("")
-    const [vagas, setVagas] = useState("")
+    const [vaga, setVaga] = useState("")
     const [bloco, setBloco] = useState("")
     const [apto, setApto] = useState("")
     const [email, setEmail] = useState("")
@@ -135,6 +136,16 @@ export function Cadastro(props)
                 senha: senha,
                 notificacao: notificacao}
             ]})
+        }
+    }
+
+    const postUser = async(name, cpf, dataNasc, sex, vaga, bloco, apto, email, password, adm) => {
+        try {
+            const response = await axios.post("http://localhost:8080/user", {name, cpf, dataNasc, sex, vaga, bloco, apto, email, password, adm})
+            console.log(response)
+        }
+        catch (error) {
+            console.error(error);
         }
     }
 
@@ -233,9 +244,9 @@ export function Cadastro(props)
                     <View>
                         <TextInput
                             style = {styles.doubleInput}
-                            value = {vagas}
+                            value = {vaga}
                             placeholder = "Vagas"
-                            onChangeText = {text => setVagas(text)}
+                            onChangeText = {text => setVaga(text)}
                         />
                     </View>
                 </View>
@@ -243,7 +254,7 @@ export function Cadastro(props)
             </View>
 
             <View style = {styles.viewButton}>
-                <TouchableOpacity style={styles.cadastrarButton} onPress = {() => postUser(nome, idade)}>
+                <TouchableOpacity style={styles.cadastrarButton} onPress = {() => postUser(nome, CPF, dataNasc, sexo, vaga, bloco, apto, email, senha, adm)}>
                     <Text style = {styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.cadastroButton} onPress = {() => props.navigation.navigate("HomeSindico")}>
