@@ -1,0 +1,12 @@
+{
+    "name" : "teste",
+    "dataNasc" : "01-01-2000",
+    "sex" : "masc",
+    "cpf" : "123",
+    "bloco" : "1",
+    "apto" : "1",
+    "email" : "a",
+    "password" : "a",
+    "adm" : true,
+    "vaga" : 1
+}

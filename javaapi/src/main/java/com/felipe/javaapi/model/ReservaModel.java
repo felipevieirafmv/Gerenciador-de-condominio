@@ -22,6 +22,11 @@ public class ReservaModel {
         this.idUser = idUser;
     }
 
+    public ReservaModel(Date diaReservado, UserModel idUser) {
+        this.diaReservado = diaReservado;
+        this.idUser = idUser;
+    }
+
     public ReservaModel(Date diaReservado) {
         this.diaReservado = diaReservado;
     }

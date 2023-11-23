@@ -27,8 +27,10 @@ public class ReservaController {
 
     @PostMapping("")
     public void newReserva(@RequestBody ReservaUserDTO newReservaUserDTO) {
-        UserModel newUserModel = new UserModel(newReservaUserDTO.getUser());
-        
+        UserModel newUserModel = new UserModel(newReservaUserDTO.getUser().getId());
+        Date data = new Date();
+        ReservaModel newReserva = new ReservaModel(data, newUserModel);
+        reservaService.save(newReserva);
     }
 
     @GetMapping("")
