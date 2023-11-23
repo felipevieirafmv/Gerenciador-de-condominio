@@ -79,7 +79,7 @@ export function Login(props)
             <View style = {styles.viewForm}>
                 <Text style = {styles.titleText}>Login</Text>
 
-                <Text style = {styles.labelText}>E-mail:</Text>
+                <Text style = {styles.labelText}>CPF:</Text>
                 <TextInput
                     style = {styles.input}
                     autoComplete = {email}

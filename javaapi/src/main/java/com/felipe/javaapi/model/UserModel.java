@@ -57,5 +57,11 @@ public class UserModel {
         this.id = id;
     }
 
+    public UserModel(String cpf, String password)
+    {
+        this.cpf = cpf;
+        this.password = password;
+    }
+
     public UserModel() { }
 }

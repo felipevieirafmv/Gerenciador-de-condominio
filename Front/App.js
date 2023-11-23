@@ -16,11 +16,11 @@ export default function App() {
 		<NavigationContainer>
 			<UtilsContext.Provider value = {{utils, setUtils}}>
 				<Stack.Navigator>
+					<Stack.Screen name = "Login" options = {{headerShown: false}} component = {Login} />
 					<Stack.Screen name = "Cadastro" options = {{headerShown: false}} component = {Cadastro} />
 					<Stack.Screen name = "ReservaChurras" options = {{headerShown: false}} component = {ReservaChurras} />
 					<Stack.Screen name = "HomeSindico" options = {{headerShown: false}} component = {HomeSindico} />
 					<Stack.Screen name = "HomeMorador" options = {{headerShown: false}} component = {HomeMorador} />
-					<Stack.Screen name = "Login" options = {{headerShown: false}} component = {Login} />
 				</Stack.Navigator>
 			</UtilsContext.Provider>
 		</NavigationContainer>
