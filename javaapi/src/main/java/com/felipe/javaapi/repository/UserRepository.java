@@ -12,4 +12,7 @@ public interface UserRepository extends MongoRepository<UserModel, String>{
 
     @Query("{'name': ?1, 'age': ?0}")
     List<UserModel> findByAgeAndName(short age, String name);
+
+    @Query("{'cpf': ?0, 'password': ?1}")
+    UserModel findByCpfPassword(String cpf, String password);
 }

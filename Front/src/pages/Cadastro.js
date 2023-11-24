@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 export function Cadastro(props)
 {
     const [nome, setNome] = useState("")
-    const [CPF, setCPF] = useState("")
+    const [cpf, setCpf] = useState("")
     const [dataNasc, setDataNasc] = useState("")
     const [sexo, setSexo] = useState("")
     const [vaga, setVaga] = useState("")
@@ -188,9 +188,9 @@ export function Cadastro(props)
 
                 <TextInput
                     style = {styles.input}
-                    value = {CPF}
+                    value = {cpf}
                     placeholder = "CPF"
-                    onChangeText = {text => setCPF(text)}
+                    onChangeText = {text => setCpf(text)}
                 />
 
                 <View style = {styles.viewDoubleInput}>
@@ -254,7 +254,7 @@ export function Cadastro(props)
             </View>
 
             <View style = {styles.viewButton}>
-                <TouchableOpacity style={styles.cadastrarButton} onPress = {() => postUser(nome, CPF, dataNasc, sexo, vaga, bloco, apto, email, senha, adm)}>
+                <TouchableOpacity style={styles.cadastrarButton} onPress = {() => postUser(nome, cpf, dataNasc, sexo, vaga, bloco, apto, email, senha, adm)}>
                     <Text style = {styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.cadastroButton} onPress = {() => props.navigation.navigate("HomeSindico")}>

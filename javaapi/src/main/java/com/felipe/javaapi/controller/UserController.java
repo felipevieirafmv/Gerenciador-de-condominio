@@ -35,6 +35,13 @@ public class UserController {
         List<UserModel> listRes = userService.findByName(name);
         return listRes;
     }
+
+    @GetMapping("/{cpf}/{password}")
+    public UserModel getUserByCPfPassword(@PathVariable String cpf, @PathVariable String password)
+    {
+        UserModel res = userService.findByCpfPassword(cpf, password);
+        return res;
+    }
     
     @PostMapping("")
     public void newUser(@RequestBody UserModel newUser) {

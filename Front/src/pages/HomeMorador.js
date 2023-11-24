@@ -60,9 +60,7 @@ const styles = StyleSheet.create({
 
 export function HomeMorador(props)
 {
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const {utils, setUtils} = useContext(UtilsContext)
+    var session = JSON.parse(sessionStorage.getItem("user"));
 
     return(
         <View style = {styles.viewClass}>
@@ -71,7 +69,7 @@ export function HomeMorador(props)
                     Gerenciador de Condomínio
                 </Text>
             </View>
-            <Text style = {styles.titleText}>Bem-vindo(a) nome</Text>
+            <Text style = {styles.titleText}>Bem-vindo(a) {session.name}</Text>
 
             <View style = {styles.viewButton}>
                 <TouchableOpacity style={styles.buttonInfo}>

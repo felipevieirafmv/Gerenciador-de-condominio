@@ -1,6 +1,10 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context";
+import axios from 'axios';
+
+
+
 
 const styles = StyleSheet.create({
     viewClass: {
@@ -65,9 +69,39 @@ const styles = StyleSheet.create({
 
 export function Login(props)
 {
-    const [email, setEmail] = useState("");
+    const [cpf, setCpf] = useState("");
     const [senha, setSenha] = useState("");
     const {utils, setUtils} = useContext(UtilsContext)
+
+    async function getResponse(cpf, password)
+    {
+        if(cpf !== "" && password !== "")
+        {
+            await axios.get(`http://localhost:8080/user/${cpf}/${password}`).then((response)=>{
+                console.log("response: ", response)
+                var user = response.data;
+                if (user !== "" && user !== null)
+                    if (user.adm)
+                        props.navigation.navigate("HomeSindico");
+                    else
+                        props.navigation.navigate("HomeMorador");
+                else
+                    alert("Usuario ou senha nao conferem");
+            
+                console.log(user)
+                sessionStorage.setItem("user", JSON.stringify(user));
+            });
+        }
+        else
+            alert("Usuario ou senha nao conferem");
+        
+    }
+
+    function verifyLogin()
+    {
+        getResponse(cpf, senha)
+        console.log("User: ", user)
+    }
 
     return(
         <View style = {styles.viewClass}>
@@ -82,9 +116,9 @@ export function Login(props)
                 <Text style = {styles.labelText}>CPF:</Text>
                 <TextInput
                     style = {styles.input}
-                    autoComplete = {email}
-                    value = {email}
-                    onChangeText = {e => setEmail(e)}
+                    autoComplete = {cpf}
+                    value = {cpf}
+                    onChangeText = {e => setCpf(e)}
                 />
 
                 <Text style = {styles.labelText}>Senha:</Text>
@@ -97,7 +131,7 @@ export function Login(props)
             </View>
 
             <View style = {styles.viewButton}>
-                <TouchableOpacity style={styles.loginButton} onPress = {() => props.navigation.navigate("Usuarios")}>
+                <TouchableOpacity style={styles.loginButton} onPress = {() => verifyLogin()}>
                     <Text style = {styles.buttonText}>Login</Text>
                 </TouchableOpacity>
             </View>

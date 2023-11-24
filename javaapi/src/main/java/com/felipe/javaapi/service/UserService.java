@@ -34,6 +34,11 @@ public class UserService {
         return (List<UserModel>) this.userRepository.findByName(name);
     }
 
+    public UserModel findByCpfPassword(String cpf, String password)
+    {
+        return (UserModel) this.userRepository.findByCpfPassword(cpf, password);
+    }
+
     public void delete(String id)
     {
         this.userRepository.deleteById(id);
