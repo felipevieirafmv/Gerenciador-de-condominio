@@ -113,32 +113,6 @@ export function Cadastro(props)
     const [adm, setAdm] = useState(false)
     const {utils, setUtils} = useContext(UtilsContext)
 
-    function goToUsuario()
-    {
-        if(utils.dados)
-        {
-            setUtils({...utils, dados: [...utils.dados, {
-                nome: nome,
-                idade: idade,
-                sexo: sexo,
-                email: email,
-                senha: senha,
-                notificacao: notificacao}
-            ]})
-        }
-        else
-        {
-            setUtils({...utils, dados: [{
-                nome: nome,
-                idade: idade,
-                sexo: sexo,
-                email: email,
-                senha: senha,
-                notificacao: notificacao}
-            ]})
-        }
-    }
-
     const postUser = async(name, cpf, dataNasc, sex, vaga, bloco, apto, email, password, adm) => {
         try {
             const response = await axios.post("http://localhost:8080/user", {name, cpf, dataNasc, sex, vaga, bloco, apto, email, password, adm})

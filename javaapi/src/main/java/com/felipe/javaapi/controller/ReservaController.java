@@ -1,7 +1,7 @@
 package com.felipe.javaapi.controller;
 
 import java.util.List;
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +27,8 @@ public class ReservaController {
     @PostMapping("")
     public void newReserva(@RequestBody ReservaUserDTO newReservaUserDTO) {
         UserModel newUserModel = new UserModel(newReservaUserDTO.getUser().getId());
-        Date data = new Date();
+        System.out.println(newReservaUserDTO.getReserva().getDiaReservado().minusDays(1));
+        LocalDate data = newReservaUserDTO.getReserva().getDiaReservado().minusDays(1);
         ReservaModel newReserva = new ReservaModel(data, newUserModel);
         reservaService.save(newReserva);
     }
@@ -35,11 +36,6 @@ public class ReservaController {
     @GetMapping("")
     public List<ReservaModel> findAllReservaModels() {
         return reservaService.findAll();
-    }
-
-    @GetMapping("/user/{userId}")
-    public List<ReservaModel> findByUserID(@PathVariable String userId) {
-        return reservaService.findByUserID(userId);
     }
 
     @DeleteMapping("/{id}")

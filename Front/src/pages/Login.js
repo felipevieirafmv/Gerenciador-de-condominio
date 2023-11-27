@@ -3,9 +3,6 @@ import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context";
 import axios from 'axios';
 
-
-
-
 const styles = StyleSheet.create({
     viewClass: {
         display: "flex",

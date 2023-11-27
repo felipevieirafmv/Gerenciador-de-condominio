@@ -1,6 +1,6 @@
 package com.felipe.javaapi.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,22 +12,22 @@ import lombok.Data;
 public class ReservaModel {
     @Id
     private String id;
-    private Date diaReservado;
+    private LocalDate diaReservado;
     @DBRef
     private UserModel idUser;
 
-    public ReservaModel(String id, Date diaReservado, UserModel idUser) {
+    public ReservaModel(String id, LocalDate diaReservado, UserModel idUser) {
         this.id = id;
         this.diaReservado = diaReservado;
         this.idUser = idUser;
     }
 
-    public ReservaModel(Date diaReservado, UserModel idUser) {
+    public ReservaModel(LocalDate diaReservado, UserModel idUser) {
         this.diaReservado = diaReservado;
         this.idUser = idUser;
     }
 
-    public ReservaModel(Date diaReservado) {
+    public ReservaModel(LocalDate diaReservado) {
         this.diaReservado = diaReservado;
     }
 

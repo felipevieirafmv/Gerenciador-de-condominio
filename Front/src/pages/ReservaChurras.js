@@ -5,6 +5,7 @@ import { UtilsContext } from "./config/context";
 import { DatePickerModal } from 'react-native-paper-dates';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import axios from 'axios';
 
 const styles = StyleSheet.create({
     viewClass: {
@@ -62,13 +63,13 @@ const styles = StyleSheet.create({
     },
 });
 
-function getDate() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const date = today.getDate();
-    return `${month}/${date}/${year}`;
-}
+// function getDate() {
+//     const today = new Date();
+//     const month = today.getMonth() + 1;
+//     const year = today.getFullYear();
+//     const date = today.getDate();
+//     return `${month}/${date}/${year}`;
+// }
 
 export function ReservaChurras(props) 
 {
@@ -76,7 +77,35 @@ export function ReservaChurras(props)
     const [open, setOpen] = React.useState(false);
     const { utils, setUtils } = useContext(UtilsContext)
 
-    const Dates = [new Date('2023-11-23'), new Date('2023-11-25')]
+    var session = JSON.parse(sessionStorage.getItem("user"));
+
+    const Dates = []
+
+    const getReserva = async() => {
+        try {
+            const response2 = await axios.get("http://localhost:8080/reserva")
+            response2.data.forEach(dates => {
+                Dates.push(new Date(dates.diaReservado))
+            })
+            console.log("response2", response2.data.diaReservado)
+            console.log("array", Dates)
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
+    getReserva();
+
+    const postReserva = async(id, diaReservado) => {
+        try {
+            const response = await axios.post("http://localhost:8080/reserva", {user:{id}, reserva:{diaReservado}})
+            console.log(response)
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
 
     Dates.forEach(date => {
         date.setDate(date.getDate() + 1)
@@ -90,6 +119,9 @@ export function ReservaChurras(props)
         (params) => {
             setOpen(false);
             setDate(params.date);
+            console.log("Id: ", session.id)
+            console.log("Data: ", params.date)
+            postReserva(session.id, params.date)
         },
         [setOpen, setDate]
     );

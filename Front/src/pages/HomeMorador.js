@@ -77,7 +77,7 @@ export function HomeMorador(props)
                 </TouchableOpacity>
             </View>
             <View style = {styles.buttonGrid}>
-                <TouchableOpacity style={styles.eachButton}>
+                <TouchableOpacity style={styles.eachButton} onPress = {() => props.navigation.navigate("ReservaChurras")}>
                     <Text style = {styles.buttonText}>Reservar churrasqueira</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.eachButton}>
