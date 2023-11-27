@@ -1,10 +1,11 @@
 import React from "react";
 import { Button } from 'react-native-paper';
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import { UtilsContext } from "./config/context";
 import { DatePickerModal } from 'react-native-paper-dates';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 
 const styles = StyleSheet.create({
@@ -73,25 +74,30 @@ const styles = StyleSheet.create({
 
 export function ReservaChurras(props) 
 {
-    const [date, setDate] = React.useState(undefined);
-    const [open, setOpen] = React.useState(false);
+    const [date, setDate] = useState(undefined);
+    const [open, setOpen] = useState(false);
     const { utils, setUtils } = useContext(UtilsContext)
 
     var session = JSON.parse(sessionStorage.getItem("user"));
 
     const Dates = []
 
-    const getReserva = async() => {
+    async function getReserva()
+    {
         try {
-            const response2 = await axios.get("http://localhost:8080/reserva")
-            response2.data.forEach(dates => {
-                Dates.push(new Date(dates.diaReservado))
-            })
-            console.log("response2", response2.data.diaReservado)
-            console.log("array", Dates)
+            await axios.get("http://localhost:8080/reserva").then((response2) => {
+                response2.data.forEach(dates => {
+                    console.log("dates.diaReservado",dates.diaReservado)
+                    Dates.push(new Date(dates.diaReservado))
+                })
+                Dates.forEach(date => {
+                    date.setDate(date.getDate() + 1)
+                });
+                console.log("Dates",Dates)
+            });
         }
         catch (error) {
-            console.error(error);
+            console.log("AAAAAAAAA",error);
         }
     }
 
@@ -107,15 +113,11 @@ export function ReservaChurras(props)
         }
     }
 
-    Dates.forEach(date => {
-        date.setDate(date.getDate() + 1)
-    });
-
-    const onDismissSingle = React.useCallback(() => {
+    const onDismissSingle = useCallback(() => {
         setOpen(false);
     }, [setOpen]);
 
-    const onConfirmSingle = React.useCallback(
+    const onConfirmSingle = useCallback(
         (params) => {
             setOpen(false);
             setDate(params.date);
