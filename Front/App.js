@@ -7,6 +7,7 @@ import {HomeMorador} from "./src/pages/HomeMorador"
 import {HomeSindico} from "./src/pages/HomeSindico"
 import {ReservaChurras} from "./src/pages/ReservaChurras"
 import {Cadastro} from "./src/pages/Cadastro"
+import {InformacoesMorador} from "./src/pages/InformacoesMorador"
 
 export default function App() {
 	const Stack = createStackNavigator()
@@ -22,7 +23,7 @@ export default function App() {
 				<Stack.Screen name = "Login" options = {{headerShown: false}} component = {Login} />
 				<Stack.Screen name = "Cadastro"
 					options = {{
-						title: 'Síndico', headerLeft: () => null, headerRight: () => (
+						title: 'Cadastro', headerTitleStyle: {fontFamily: 'Comic Sans MS'}, headerLeft: () => null, headerRight: () => (
 							<TouchableOpacity
 								style={styles.touch1}
 								onPress={() => logOut()}
@@ -34,7 +35,7 @@ export default function App() {
 
 				<Stack.Screen name = "ReservaChurras"
 					options = {{
-						title: 'Morador', headerLeft: () => null, headerRight: () => (
+						title: 'Reserva', headerTitleStyle: {fontFamily: 'Comic Sans MS'}, headerLeft: () => null, headerRight: () => (
 							<TouchableOpacity
 								style={styles.touch1}
 								onPress={() => logOut()}
@@ -46,7 +47,7 @@ export default function App() {
 
 				<Stack.Screen name = "HomeSindico"
 					options = {{
-						title: 'Síndico', headerLeft: () => null, headerRight: () => (
+						title: 'Síndico', headerTitleStyle: {fontFamily: 'Comic Sans MS'}, headerLeft: () => null, headerRight: () => (
 							<TouchableOpacity
 								style={styles.touch1}
 								onPress={() => logOut()}
@@ -58,7 +59,7 @@ export default function App() {
 
 				<Stack.Screen name = "HomeMorador"
 					options = {{
-						title: 'Morador', headerLeft: () => null, headerRight: () => (
+						title: 'Morador', headerTitleStyle: {fontFamily: 'Comic Sans MS'}, headerLeft: () => null, headerRight: () => (
 							<TouchableOpacity
 								style={styles.touch1}
 								onPress={() => logOut()}
@@ -67,6 +68,18 @@ export default function App() {
 							</TouchableOpacity>
 						)
 					}} component = {HomeMorador} />
+				
+				<Stack.Screen name = "InformacoesMorador"
+					options = {{
+						title: 'Informações', headerTitleStyle: {fontFamily: 'Comic Sans MS'}, headerLeft: () => null, headerRight: () => (
+							<TouchableOpacity
+								style={styles.touch1}
+								onPress={() => logOut()}
+							>
+								<Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Sair</Text>
+							</TouchableOpacity>
+						)
+					}} component = {InformacoesMorador} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

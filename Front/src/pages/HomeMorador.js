@@ -1,6 +1,4 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import { useState, useContext } from 'react';
-import { UtilsContext } from "./config/context";
 
 const styles = StyleSheet.create({
     viewClass: {
@@ -67,7 +65,7 @@ export function HomeMorador(props)
             <Text style = {styles.titleText}>Bem-vindo(a) {session.name}</Text>
 
             <View style = {styles.viewButton}>
-                <TouchableOpacity style={styles.buttonInfo}>
+                <TouchableOpacity style={styles.buttonInfo} onPress = {() => props.navigation.navigate("InformacoesMorador")}>
                     <Text style = {styles.buttonText}>Informações gerais</Text>
                 </TouchableOpacity>
             </View>
