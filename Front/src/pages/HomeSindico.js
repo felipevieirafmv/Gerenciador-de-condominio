@@ -66,11 +66,6 @@ export function HomeSindico(props)
 
     return(
         <View style = {styles.viewClass}>
-            <View style = {styles.viewHeader}>
-                <Text style = {styles.textHeader}>
-                    Gerenciador de Condomínio
-                </Text>
-            </View>
             <Text style = {styles.titleText}>Bem-vindo(a) nome</Text>
 
             <View style = {styles.viewButton}>
@@ -79,7 +74,7 @@ export function HomeSindico(props)
                 </TouchableOpacity>
             </View>
             <View style = {styles.buttonGrid}>
-                <TouchableOpacity style={styles.eachButton}>
+                <TouchableOpacity style={styles.eachButton} onPress = {() => props.navigation.navigate("Cadastro")}>
                     <Text style = {styles.buttonText}>Cadastrar um morador</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.eachButton}>

@@ -125,12 +125,6 @@ export function Cadastro(props)
 
     return(
         <View style = {styles.viewClass}>
-            <View style = {styles.viewHeader}>
-                <Text style = {styles.textHeader}>
-                    Gerenciador de Condomínio
-                </Text>
-            </View>
-
             <Text style = {styles.titleText}>Cadastrar Morador</Text>
 
             <View style = {styles.viewForm}>

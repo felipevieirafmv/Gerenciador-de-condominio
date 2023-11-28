@@ -64,11 +64,6 @@ export function HomeMorador(props)
 
     return(
         <View style = {styles.viewClass}>
-            <View style = {styles.viewHeader}>
-                <Text style = {styles.textHeader}>
-                    Gerenciador de Condomínio
-                </Text>
-            </View>
             <Text style = {styles.titleText}>Bem-vindo(a) {session.name}</Text>
 
             <View style = {styles.viewButton}>

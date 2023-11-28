@@ -66,6 +66,21 @@ const styles = StyleSheet.create({
 
 export function Login(props)
 {
+    if (sessionStorage.length > 0)
+    {
+        try{
+            var user = JSON.parse(sessionStorage.getItem("user"));
+            if (user.adm == true)
+                props.navigation.navigate("HomeSindico");
+            else
+                props.navigation.navigate("HomeMorador");
+        }
+        catch(e)
+        {
+            console.log("Pra nao bugar 👍")
+        }
+    }    
+
     const [cpf, setCpf] = useState("");
     const [senha, setSenha] = useState("");
     const {utils, setUtils} = useContext(UtilsContext)
@@ -77,21 +92,28 @@ export function Login(props)
             await axios.get(`http://localhost:8080/user/${cpf}/${password}`).then((response)=>{
                 console.log("response: ", response)
                 var user = response.data;
+
+                sessionStorage.setItem("user", JSON.stringify(user));
+
                 if (user !== "" && user !== null)
-                    if (user.adm)
-                        props.navigation.navigate("HomeSindico");
-                    else
-                        props.navigation.navigate("HomeMorador");
+                {
+                    try {
+                        if (user.adm)
+                            props.navigation.navigate("HomeSindico");
+                        else
+                            props.navigation.navigate("HomeMorador");
+                    }
+                    catch (e) {
+                        alert("Usuario ou senha nao conferem");
+                    }
+                }
                 else
                     alert("Usuario ou senha nao conferem");
-            
-                console.log(user)
-                sessionStorage.setItem("user", JSON.stringify(user));
+                
             });
         }
         else
-            alert("Usuario ou senha nao conferem");
-        
+            alert("Usuario ou senha nao conferem");    
     }
 
     function verifyLogin()

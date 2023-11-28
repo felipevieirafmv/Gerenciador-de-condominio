@@ -130,11 +130,6 @@ export function ReservaChurras(props)
 
     return (
         <View style={styles.viewClass}>
-            <View style={styles.viewHeader}>
-                <Text style={styles.textHeader}>
-                    Gerenciador de Condomínio
-                </Text>
-            </View>
             <SafeAreaProvider>
                 <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
                     <Button onPress={() => setOpen(true)} uppercase={false} mode="outlined">
