@@ -1,6 +1,5 @@
 package com.felipe.javaapi.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class AvisoController {
     }
 
     @GetMapping("/{dataAviso}")
-    public List<AvisoModel> getAvisoByDate(@PathVariable LocalDate dataAviso)
+    public List<AvisoModel> getAvisoByDate(@PathVariable String dataAviso)
     {
         List<AvisoModel> listRes = avisoService.findByDate(dataAviso);
         return listRes;

@@ -1,6 +1,5 @@
 package com.felipe.javaapi.model;
 
-import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,12 +10,12 @@ import lombok.Data;
 public class AvisoModel {
     @Id
     private String id;
-    private LocalDate dataAviso;
-    private LocalDate dataCriado;
+    private String dataAviso;
+    private String dataCriado;
     private String titulo;
     private String info;
 
-    public AvisoModel(String id, LocalDate dataAviso, LocalDate dataCriado, String titulo, String info) {
+    public AvisoModel(String id, String dataAviso, String dataCriado, String titulo, String info) {
         this.id = id;
         this.dataAviso = dataAviso;
         this.dataCriado = dataCriado;
@@ -24,7 +23,7 @@ public class AvisoModel {
         this.info = info;
     }
 
-    public AvisoModel(LocalDate dataAviso) {
+    public AvisoModel(String dataAviso) {
         this.dataAviso = dataAviso;
     }
 

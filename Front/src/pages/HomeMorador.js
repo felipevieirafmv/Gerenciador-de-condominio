@@ -78,8 +78,8 @@ export function HomeMorador(props)
                 </TouchableOpacity>
             </View>
             <View style = {styles.buttonGrid}>
-                <TouchableOpacity style={styles.eachButton}>
-                    <Text style = {styles.buttonText}>Votar</Text>
+                <TouchableOpacity style={styles.eachButton} onPress = {() => props.navigation.navigate("Avisos")}>
+                    <Text style = {styles.buttonText}>Avisos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.eachButton}>
                     <Text style = {styles.buttonText}>Mensalidade</Text>
