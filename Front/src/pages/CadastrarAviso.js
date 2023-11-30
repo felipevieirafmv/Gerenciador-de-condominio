@@ -96,6 +96,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: "center",
     },
+	touch1: {
+        width: "75px",
+        height: "35px",
+        backgroundColor: "black",
+        padding: "5px",
+        borderRadius: "10px",
+        marginRight: "15px",
+        justifyContent: "center",
+        alignItems: "center"
+	},
 
 });
 
@@ -123,6 +133,9 @@ export function CadastrarAviso(props)
 
     return(
         <View style = {styles.viewClass}>
+            <TouchableOpacity style={styles.touch1} onPress = {() => props.navigation.navigate("HomeSindico")}>
+                <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Voltar</Text>
+            </TouchableOpacity>
             <Text style = {styles.titleText}>Cadastrar Morador</Text>
 
             <View style = {styles.viewForm}>

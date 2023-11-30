@@ -74,13 +74,20 @@ const styles = StyleSheet.create({
 
 function BoxAviso (props)
 {
-
     return(
         <View style = {styles.box}>
             <Text style={styles.labelText}>Título: {props.titulo}</Text>
             <Text style={styles.labelText}>Informações: {props.info}</Text>
             <Text style={styles.labelText}>Data do aviso: {props.dataAviso}</Text>
             <Text style={styles.labelText}>Data de emissão: {props.dataCriado}</Text>
+            {
+                props.isAdm == true ?
+                    <TouchableOpacity style={styles.touch1} onPress = {() => axios.delete(`http://localhost:8080/aviso/${props.idAviso}`)}>
+                        <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Excluir aviso</Text>
+                    </TouchableOpacity>
+                : null
+
+            }
         </View>
     )
 }
@@ -135,10 +142,12 @@ export function Avisos(props)
                 data={lista}
                 renderItem = {({item}) => <BoxAviso 
                     key = {item.id}
+                    idAviso = {item.id}
                     titulo = {item.titulo}
                     dataAviso = {item.dataAviso}
                     dataCriado = {item.dataCriado}
                     info = {item.info}
+                    isAdm = {user.adm}
                 />}
                 keyExtractor={item => item.id}
             />

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useState, useContext } from 'react';
 import { UtilsContext } from "./config/context";
 
@@ -59,6 +59,16 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: 'center',
     },
+	touch1: {
+        width: "75px",
+        height: "35px",
+        backgroundColor: "black",
+        padding: "5px",
+        borderRadius: "10px",
+        marginRight: "15px",
+        justifyContent: "center",
+        alignItems: "center"
+	},
 });
 
 export function InformacoesMorador(props)
@@ -66,11 +76,16 @@ export function InformacoesMorador(props)
     var session = JSON.parse(sessionStorage.getItem("user"));
 
     return(
-        <View style = {styles.box}>
-            <Text style={styles.labelText}>Nome: {session.name}</Text>
-            <Text style={styles.labelText}>Bloco: {session.bloco}</Text>
-            <Text style={styles.labelText}>Apto: {session.apto}</Text>
-            <Text style={styles.labelText}>Vagas: {session.vaga}</Text>
+        <View>
+            <TouchableOpacity style={styles.touch1} onPress = {() => props.navigation.navigate("HomeMorador")}>
+                <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Voltar</Text>
+            </TouchableOpacity>
+            <View style = {styles.box}>
+                <Text style={styles.labelText}>Nome: {session.name}</Text>
+                <Text style={styles.labelText}>Bloco: {session.bloco}</Text>
+                <Text style={styles.labelText}>Apto: {session.apto}</Text>
+                <Text style={styles.labelText}>Vagas: {session.vaga}</Text>
+            </View>
         </View>
     )
 }

@@ -62,6 +62,16 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderRadius: 5
     },
+	touch1: {
+        width: "75px",
+        height: "35px",
+        backgroundColor: "black",
+        padding: "5px",
+        borderRadius: "10px",
+        marginRight: "15px",
+        justifyContent: "center",
+        alignItems: "center"
+	},
 });
 
 // function getDate() {
@@ -130,6 +140,9 @@ export function ReservaChurras(props)
 
     return (
         <View style={styles.viewClass}>
+            <TouchableOpacity style={styles.touch1} onPress = {() => props.navigation.navigate("HomeMorador")}>
+                <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Voltar</Text>
+            </TouchableOpacity>
             <SafeAreaProvider>
                 <View style={{ justifyContent: 'center', flex: 1, alignItems: 'center' }}>
                     <Button onPress={() => setOpen(true)} uppercase={false} mode="outlined">
