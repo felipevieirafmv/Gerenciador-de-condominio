@@ -9,6 +9,7 @@ import {ReservaChurras} from "./src/pages/ReservaChurras"
 import {Cadastro} from "./src/pages/Cadastro"
 import {InformacoesMorador} from "./src/pages/InformacoesMorador"
 import {Avisos} from "./src/pages/Avisos"
+import {CadastrarAviso} from "./src/pages/CadastrarAviso"
 
 export default function App() {
 	const Stack = createStackNavigator()
@@ -93,6 +94,18 @@ export default function App() {
 							</TouchableOpacity>
 						)
 					}} component = {Avisos} />
+
+				<Stack.Screen name = "CadastrarAviso"
+					options = {{
+						title: 'Cadastrar Avisos', headerTitleStyle: {fontFamily: 'Comic Sans MS'}, headerLeft: () => null, headerRight: () => (
+							<TouchableOpacity
+								style={styles.touch1}
+								onPress={() => logOut()}
+							>
+								<Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Sair</Text>
+							</TouchableOpacity>
+						)
+					}} component = {CadastrarAviso} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

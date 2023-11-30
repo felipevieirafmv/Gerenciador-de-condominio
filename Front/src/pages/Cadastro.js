@@ -116,6 +116,7 @@ export function Cadastro(props)
     const postUser = async(name, cpf, dataNasc, sex, vaga, bloco, apto, email, password, adm) => {
         try {
             const response = await axios.post("http://localhost:8080/user", {name, cpf, dataNasc, sex, vaga, bloco, apto, email, password, adm})
+            props.navigation.navigate("HomeSindico")
             console.log(response)
         }
         catch (error) {

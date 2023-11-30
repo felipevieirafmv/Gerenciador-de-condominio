@@ -77,8 +77,8 @@ export function HomeSindico(props)
                 <TouchableOpacity style={styles.eachButton} onPress = {() => props.navigation.navigate("Cadastro")}>
                     <Text style = {styles.buttonText}>Cadastrar um morador</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.eachButton}>
-                    <Text style = {styles.buttonText}>Ler Denúncias ou Comentários</Text>
+                <TouchableOpacity style={styles.eachButton} onPress = {() => props.navigation.navigate("Avisos")}>
+                    <Text style = {styles.buttonText}>Avisos</Text>
                 </TouchableOpacity>
             </View>
             <View style = {styles.buttonGrid}>
@@ -91,7 +91,7 @@ export function HomeSindico(props)
             </View>
             <View style = {styles.buttonGrid}>
                 <TouchableOpacity style={styles.eachButton}>
-                    <Text style = {styles.buttonText}>Criar uma assembléia</Text>
+                    <Text style = {styles.buttonText}>Ler Denúncias ou Comentários</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.eachButton}>
                     <Text style = {styles.buttonText}>Histórico de atividades</Text>

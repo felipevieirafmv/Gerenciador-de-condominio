@@ -85,41 +85,19 @@ function BoxAviso (props)
     )
 }
 
-function UserModal (props)
-{
-    return(
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={props.modalVisible}
-            onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
-                props.setModalVisible(!props.modalVisible);
-            }}
-            >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.labelText}>Nome: {props.nome}</Text>
-                    <Text style={styles.labelText}>Idade: {props.idade}</Text>
-                    <Text style={styles.labelText}>Sexo: {props.sexo}</Text>
-                    <Text style={styles.labelText}>Email: {props.email}</Text>
-                    <Text style={styles.labelText}>Senha: {props.senha}</Text>
-                    <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={() => props.setModalVisible(!props.modalVisible)}>
-                    <Text style={styles.textStyle}>Hide Modal</Text>
-                    </Pressable>
-                </View>
-            </View>
-        </Modal>
-    )
-}
-
 export function Avisos(props)
 {    
     var user = JSON.parse(sessionStorage.getItem("user"));
 
     const [lista, setLista] = useState("");
+
+    function goToHome()
+    {
+        if (user.adm == true)
+            props.navigation.navigate("HomeSindico")
+        else
+            props.navigation.navigate("HomeMorador")
+    }
 
     async function getAviso()
     {
@@ -143,12 +121,16 @@ export function Avisos(props)
 
     return(
         <View style = {styles.viewClass}>
-            <TouchableOpacity style={styles.touch1} onPress = {() => props.navigation.navigate("HomeMorador")}>
+            <TouchableOpacity style={styles.touch1} onPress = {() => goToHome()}>
                 <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Voltar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.touch1} onPress = {() => props.navigation.navigate("HomeMorador")}>
-                <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Criar Aviso</Text>
-            </TouchableOpacity>
+            {
+                user.adm == true ?
+                    <TouchableOpacity style={styles.touch1} onPress = {() => props.navigation.navigate("CadastrarAviso")}>
+                        <Text style={{color: "white", fontFamily: "Comic Sans MS"}}>Criar Aviso</Text>
+                    </TouchableOpacity>
+                : null
+            }
             <FlatList
                 data={lista}
                 renderItem = {({item}) => <BoxAviso 
@@ -158,7 +140,7 @@ export function Avisos(props)
                     dataCriado = {item.dataCriado}
                     info = {item.info}
                 />}
-                keyExtractor={item => item.nome}
+                keyExtractor={item => item.id}
             />
         </View>
     )
